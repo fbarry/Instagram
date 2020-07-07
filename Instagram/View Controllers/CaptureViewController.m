@@ -15,6 +15,7 @@
 
 @property (strong, nonatomic) IBOutlet UIButton *postImage;
 @property (strong, nonatomic) IBOutlet UITextView *postText;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -22,19 +23,21 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    [self.activityIndicator stopAnimating];
 }
 
 - (IBAction)didTapShare:(id)sender {
-    self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
-    
+    [self.activityIndicator startAnimating];
     [Post postUserImage:self.postImage.currentImage withCaption:self.postText.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             [Utilities presentOkAlertControllerInViewController:self
                                                       withTitle:@"Error Posting Content"
                                                         message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
         } else {
-            [self.delegate didPost];
+            self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
         }
+        [self.activityIndicator stopAnimating];
     }];
 }
 

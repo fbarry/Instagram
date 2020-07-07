@@ -16,7 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "CaptureViewController.h"
 
-@interface HomeViewController () <CaptureViewControllerDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
@@ -38,10 +38,6 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
-    [self loadFeed];
-}
-
-- (void)didPost {
     [self loadFeed];
 }
 

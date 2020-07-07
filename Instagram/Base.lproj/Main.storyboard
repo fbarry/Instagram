@@ -202,12 +202,22 @@
                                     <action selector="didTapImage:" destination="bdE-8S-C0h" eventType="touchUpInside" id="bea-Gm-7VH"/>
                                 </connections>
                             </button>
+                            <activityIndicatorView opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" animating="YES" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="zJe-Ek-Buw">
+                                <rect key="frame" x="182" y="425.5" width="50" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="50" id="EWq-hn-WzR"/>
+                                    <constraint firstAttribute="height" constant="50" id="j9x-kD-68d"/>
+                                </constraints>
+                                <color key="color" systemColor="systemPurpleColor" red="0.68627450980000004" green="0.32156862749999998" blue="0.87058823529999996" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            </activityIndicatorView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="FDr-wD-ffH" firstAttribute="trailing" secondItem="c57-9b-L0K" secondAttribute="trailing" constant="8" id="5hC-jD-fri"/>
                             <constraint firstItem="FDr-wD-ffH" firstAttribute="bottom" secondItem="c57-9b-L0K" secondAttribute="bottom" constant="300" id="67F-Km-Dxc"/>
                             <constraint firstItem="c57-9b-L0K" firstAttribute="leading" secondItem="hiy-VE-eCF" secondAttribute="trailing" constant="8" id="7fB-ED-bFL"/>
+                            <constraint firstItem="zJe-Ek-Buw" firstAttribute="centerX" secondItem="FDr-wD-ffH" secondAttribute="centerX" id="D6m-dF-4Pg"/>
+                            <constraint firstItem="zJe-Ek-Buw" firstAttribute="centerY" secondItem="FDr-wD-ffH" secondAttribute="centerY" id="DeJ-BJ-pSo"/>
                             <constraint firstItem="hiy-VE-eCF" firstAttribute="top" secondItem="FDr-wD-ffH" secondAttribute="top" constant="16" id="eVr-3L-50B"/>
                             <constraint firstItem="c57-9b-L0K" firstAttribute="top" secondItem="FDr-wD-ffH" secondAttribute="top" constant="16" id="enr-bh-AO3"/>
                             <constraint firstItem="hiy-VE-eCF" firstAttribute="leading" secondItem="FDr-wD-ffH" secondAttribute="leading" constant="8" id="ko8-OZ-ctN"/>
@@ -222,6 +232,7 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="activityIndicator" destination="zJe-Ek-Buw" id="1ro-G6-hvh"/>
                         <outlet property="postImage" destination="hiy-VE-eCF" id="BcC-gR-Jz6"/>
                         <outlet property="postText" destination="c57-9b-L0K" id="Xad-ur-MyC"/>
                     </connections>

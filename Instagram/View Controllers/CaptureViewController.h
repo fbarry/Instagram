@@ -16,15 +16,7 @@ typedef enum {
     PHOTOS,
 } SelectionType;
 
-@protocol CaptureViewControllerDelegate <NSObject>
-
-- (void)didPost;
-
-@end
-
 @interface CaptureViewController : UIViewController
-
-@property (nonatomic) id<CaptureViewControllerDelegate> delegate;
 
 @end
 
