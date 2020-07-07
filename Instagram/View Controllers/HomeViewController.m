@@ -30,6 +30,7 @@
     
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     
     [self loadFeed];
     
@@ -47,7 +48,6 @@
     [query addDescendingOrder:@"createdAt"];
     query.limit = 20;
 
-    // fetch data asynchronously
     [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
         if (error) {
             [Utilities presentOkAlertControllerInViewController:self
@@ -55,27 +55,16 @@
                                                         message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
         } else {
             self.posts = posts;
-            NSLog(@"%ld", self.posts.count);
             [self.tableView reloadData];
         }
         [self.tableView.refreshControl endRefreshing];
     }];
 }
 
-- (IBAction)didTapLogout:(id)sender {
-    SceneDelegate *sceneDelegate = (SceneDelegate *)self.view.window.windowScene.delegate;
-
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"Main" bundle:nil];
-    LoginViewController *loginViewController = [storyboard instantiateViewControllerWithIdentifier:@"LoginViewController"];
-    sceneDelegate.window.rootViewController = loginViewController;
-
-    [PFUser logOut];
-}
-
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
     cell.post = self.posts[indexPath.row];
-        
+    
     [cell.postImage setImageWithURL:[NSURL URLWithString:cell.post.image.url]];
     cell.postUsername.text = cell.post.author.username;
     cell.postText.text = cell.post.caption;

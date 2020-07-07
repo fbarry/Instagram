@@ -35,6 +35,7 @@
                                                       withTitle:@"Error Posting Content"
                                                         message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
         } else {
+            [self didTapCancel:self];
             self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
         }
         [self.activityIndicator stopAnimating];
@@ -61,6 +62,7 @@
 - (void)setPicture:(SelectionType) type {
     UIImagePickerController *imagePickerVC = [UIImagePickerController new];
     imagePickerVC.delegate = self;
+    imagePickerVC.allowsEditing = YES;
     imagePickerVC.sourceType = UIImagePickerControllerSourceTypeCamera;
     
     [self presentViewController:imagePickerVC animated:YES completion:nil];
@@ -72,27 +74,21 @@
 
 - (void)imagePickerController:(UIImagePickerController *)picker didFinishPickingMediaWithInfo:(NSDictionary<NSString *,id> *)info {
     
-    UIImage *originalImage = info[UIImagePickerControllerOriginalImage];
+    UIImage *image = [Utilities resizeImage:info[UIImagePickerControllerOriginalImage] withSize:CGSizeMake(1000, 1000)];
     
-    [self.postImage setImage:originalImage forState:UIControlStateNormal];
+    [self.postImage setImage:image forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
-- (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size {
-    UIImageView *resizeImageView = [[UIImageView alloc] initWithFrame:CGRectMake(0, 0, size.width, size.height)];
-    
-    resizeImageView.contentMode = UIViewContentModeScaleAspectFill;
-    resizeImageView.image = image;
-    
-    UIGraphicsBeginImageContext(size);
-    [resizeImageView.layer renderInContext:UIGraphicsGetCurrentContext()];
-    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
-    UIGraphicsEndImageContext();
-    
-    return newImage;
+- (IBAction)didTapBackground:(id)sender {
+    [self.view endEditing:YES];
 }
 
+- (IBAction)didTapCancel:(id)sender {
+    [self.postImage setImage:[UIImage imageNamed:@"image_placeholder.png"] forState:UIControlStateNormal];
+    self.postText.text = nil;
+}
 
 #pragma mark - Navigation
 

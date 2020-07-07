@@ -17,6 +17,8 @@ NS_ASSUME_NONNULL_BEGIN
                                         withTitle:(NSString *)title
                                           message:(NSString *)message;
 
++ (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
+
 @end
 
 NS_ASSUME_NONNULL_END
