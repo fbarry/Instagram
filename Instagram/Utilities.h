@@ -8,6 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
+#import <Parse/Parse.h>
 
 NS_ASSUME_NONNULL_BEGIN
 
@@ -18,6 +19,8 @@ NS_ASSUME_NONNULL_BEGIN
                                           message:(NSString *)message;
 
 + (UIImage *)resizeImage:(UIImage *)image withSize:(CGSize)size;
+
++ (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
 @end
 

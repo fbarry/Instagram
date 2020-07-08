@@ -10,12 +10,12 @@
 #import "Post.h"
 #import <Parse/Parse.h>
 #import "Utilities.h"
+#import "MBProgressHUD.h"
 
-@interface CaptureViewController () <UIImagePickerControllerDelegate, UINavigationControllerDelegate>
+@interface CaptureViewController () <UITextViewDelegate, UIImagePickerControllerDelegate, UINavigationControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UIButton *postImage;
 @property (strong, nonatomic) IBOutlet UITextView *postText;
-@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -24,11 +24,11 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     
-    [self.activityIndicator stopAnimating];
+    self.postText.delegate = self;
 }
 
 - (IBAction)didTapShare:(id)sender {
-    [self.activityIndicator startAnimating];
+    [MBProgressHUD showHUDAddedTo:self.view animated:YES];
     [Post postUserImage:self.postImage.currentImage withCaption:self.postText.text withCompletion:^(BOOL succeeded, NSError * _Nullable error) {
         if (error) {
             [Utilities presentOkAlertControllerInViewController:self
@@ -38,7 +38,7 @@
             [self didTapCancel:self];
             self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
         }
-        [self.activityIndicator stopAnimating];
+        [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
 }
 
@@ -79,6 +79,20 @@
     [self.postImage setImage:image forState:UIControlStateNormal];
     
     [self dismissViewControllerAnimated:YES completion:nil];
+}
+
+- (void)textViewDidBeginEditing:(UITextView *)textView {
+    if ([self.postText.text isEqualToString:@"Write your caption here"]) {
+        self.postText.text = nil;
+    }
+    [self.postImage setUserInteractionEnabled:NO];
+}
+
+- (void)textViewDidEndEditing:(UITextView *)textView {
+    [self.postImage setUserInteractionEnabled:YES];
+    if ([self.postText.text isEqual:@""]) {
+        self.postText.text = @"Write your caption here";
+    }
 }
 
 - (IBAction)didTapBackground:(id)sender {

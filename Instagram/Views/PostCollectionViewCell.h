@@ -1,8 +1,8 @@
 //
-//  PostCell.h
+//  PostCollectionViewCell.h
 //  Instagram
 //
-//  Created by Fiona Barry on 7/6/20.
+//  Created by Fiona Barry on 7/7/20.
 //  Copyright © 2020 fbarry. All rights reserved.
 //
 
@@ -11,13 +11,10 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface PostCell : UITableViewCell
+@interface PostCollectionViewCell : UICollectionViewCell
 
 @property (strong, nonatomic) Post *post;
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
-@property (weak, nonatomic) IBOutlet UILabel *postText;
-@property (weak, nonatomic) IBOutlet UILabel *postUsername;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
 
 @end
 

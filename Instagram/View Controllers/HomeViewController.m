@@ -15,11 +15,13 @@
 #import "PostCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "CaptureViewController.h"
+#import "DetailsViewController.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *posts;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 @end
 
@@ -31,6 +33,7 @@
     self.tableView.delegate = self;
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
+    self.activityIndicator.center = self.view.center;
     
     [self loadFeed];
     
@@ -43,6 +46,8 @@
 }
 
 - (void)loadFeed {
+    [self.activityIndicator startAnimating];
+    
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image"]];
     [query addDescendingOrder:@"createdAt"];
@@ -58,14 +63,22 @@
             [self.tableView reloadData];
         }
         [self.tableView.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
     }];
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
+    [cell.postImage setImage:[UIImage imageNamed:@"image_placeholder.png"]];
+    
     cell.post = self.posts[indexPath.row];
     
-    [cell.postImage setImageWithURL:[NSURL URLWithString:cell.post.image.url]];
+//    [cell.profilePicture setImageWithURL:[NSURL URLWithString:cell.post.author.profilePicture.url]];
+    [cell.postImage setImageWithURL:[NSURL URLWithString:cell.post.image.url] placeholderImage:[UIImage imageNamed:@"placeholder_image.png"]];
     cell.postUsername.text = cell.post.author.username;
     cell.postText.text = cell.post.caption;
     
@@ -76,14 +89,12 @@
     return self.posts.count;
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+    if ([segue.identifier isEqualToString:@"Details"]) {
+        DetailsViewController *detailsViewController = [segue destinationViewController];
+        PostCell *cell = sender;
+        detailsViewController.post = cell.post;
+    }
 }
-*/
 
 @end
