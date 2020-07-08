@@ -16,15 +16,11 @@
 #import "Post.h"
 #import "User.h"
 #import "DetailsViewController.h"
+#import "CollectionHeader.h"
 
 @interface ProfileViewController () <UICollectionViewDelegate, UICollectionViewDataSource>
 
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
-@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
-@property (weak, nonatomic) IBOutlet UILabel *nameLabel;
-@property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
-@property (weak, nonatomic) IBOutlet UILabel *usernameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *descriptionLabel;
 @property (strong, nonatomic) NSArray *posts;
 
 @end
@@ -36,11 +32,8 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-    
-    User *user = (User *)[PFUser currentUser];
-    self.nameLabel.text = user.name;
-    self.usernameLabel.text = user.username;
-    self.descriptionLabel.text = user.descriptionText;
+        
+//    [self.collectionView registerClass:[CollectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionHeader"];
     
     [self getProfileFeed];
 }
@@ -52,6 +45,8 @@
 - (void)getProfileFeed {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
     
+//    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 500);
+    
     layout.minimumInteritemSpacing = 2.5;
     layout.minimumLineSpacing = 2.5;
     
@@ -59,13 +54,6 @@
     CGFloat itemWidth = (self.view.frame.size.width - layout.minimumInteritemSpacing * (postsPerRow - 1)) / postsPerRow;
     CGFloat itemHeight = itemWidth;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
-    
-    NSInteger numRows = (self.posts.count + postsPerRow - 1) / postsPerRow;
-    CGFloat collectionViewHeight = numRows * itemHeight + (numRows - 1) * layout.minimumLineSpacing;
-    
-    self.scrollView.frame = self.view.frame;
-    self.collectionView.frame = CGRectMake(self.collectionView.frame.origin.x, self.collectionView.frame.origin.y, self.view.frame.size.width, collectionViewHeight);
-    self.scrollView.contentSize = CGSizeMake(self.view.frame.size.width, self.collectionView.frame.origin.y + collectionViewHeight);
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query whereKey:@"author" equalTo:[PFUser currentUser]];
@@ -114,8 +102,31 @@
     return cell;
 }
 
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath {
+    CollectionHeader *collectionHeader = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionHeader" forIndexPath:indexPath];
+    
+    [Utilities roundImage:collectionHeader.profilePicture];
+        
+    User *user = [User currentUser];
+    
+    NSLog(@"%@", user);
+    
+    collectionHeader.nameLabel.text = user.name;
+    collectionHeader.usernameLabel.text = [NSString stringWithFormat:@"@%@", user.username];
+    collectionHeader.descriptionLabel.text = user.descriptionText;
+    if (user.profilePicture) {
+        [collectionHeader.profilePicture setImageWithURL:[NSURL URLWithString:user.profilePicture.url] placeholderImage:collectionHeader.profilePicture.image];
+    }
+    
+    return collectionHeader;
+}
+
 - (NSInteger)collectionView:(nonnull UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section {
     return self.posts.count;
+}
+
+- (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView {
+    return 1;
 }
 
 - (IBAction)didTapEditProfile:(id)sender {

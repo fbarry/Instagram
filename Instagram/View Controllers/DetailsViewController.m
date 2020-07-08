@@ -12,6 +12,7 @@
 #import <Parse/Parse.h>
 #import "Utilities.h"
 #import "MBProgressHUD.h"
+#import "UIImageView+AFNetworking.h"
 
 @interface DetailsViewController ()
 
@@ -28,10 +29,15 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
         
+    [Utilities roundImage:self.profilePicture];
+    
     NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
     [formatter setDateStyle:NSDateFormatterMediumStyle];
     self.dateLabel.text = [formatter stringFromDate:self.post.createdAt];
     
+    if (self.post.author.profilePicture) {
+        [self.profilePicture setImageWithURL:[NSURL URLWithString:self.post.author.profilePicture.url] placeholderImage:self.profilePicture.image];
+    }
     self.usernameLabel.text = self.post.author.username;
     [self.postImage setImageWithURL:[NSURL URLWithString:self.post.image.url]];
     self.postText.text = self.post.caption;

@@ -9,6 +9,7 @@
 #import "LoginViewController.h"
 #import "Utilities.h"
 #import <Parse/Parse.h>
+#import "User.h"
 
 @interface LoginViewController ()
 
@@ -31,7 +32,7 @@
                                                   withTitle:@"Invalid Input"
                                                     message:@"Username/Password field is incomplete."];
     } else {
-        PFUser *user = [PFUser user];
+        User *user = [User new];
         
         user.username = self.username.text;
         user.password = self.password.text;

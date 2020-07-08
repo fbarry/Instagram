@@ -22,6 +22,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (PFFileObject *)getPFFileFromImage: (UIImage * _Nullable)image;
 
++ (void)roundImage:(UIImageView *)imageView;
+
 @end
 
 NS_ASSUME_NONNULL_END

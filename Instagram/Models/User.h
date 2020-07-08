@@ -16,7 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *descriptionText;
 
-- (void) updateProfilePicture: ( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
+- (void)updateProfilePicture:( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 
 @end
 

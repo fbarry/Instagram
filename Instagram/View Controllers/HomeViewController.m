@@ -16,6 +16,7 @@
 #import "UIImageView+AFNetworking.h"
 #import "CaptureViewController.h"
 #import "DetailsViewController.h"
+#import "PostHeader.h"
 
 @interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
 
@@ -34,6 +35,8 @@
     self.tableView.dataSource = self;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.activityIndicator.center = self.view.center;
+    
+    [self.tableView registerNib:[UINib nibWithNibName:@"PostHeader" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@"PostHeader"];
     
     [self loadFeed];
     
@@ -71,21 +74,36 @@
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
+- (CGFloat)tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section {
+    return 62;
+}
+
 - (nonnull UITableViewCell *)tableView:(nonnull UITableView *)tableView cellForRowAtIndexPath:(nonnull NSIndexPath *)indexPath {
     PostCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"PostCell"];
-    [cell.postImage setImage:[UIImage imageNamed:@"image_placeholder.png"]];
     
-    cell.post = self.posts[indexPath.row];
-    
-//    [cell.profilePicture setImageWithURL:[NSURL URLWithString:cell.post.author.profilePicture.url]];
+    cell.post = self.posts[indexPath.section];
     [cell.postImage setImageWithURL:[NSURL URLWithString:cell.post.image.url] placeholderImage:[UIImage imageNamed:@"placeholder_image.png"]];
-    cell.postUsername.text = cell.post.author.username;
     cell.postText.text = cell.post.caption;
     
     return cell;
 }
 
+- (UIView *)tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section {
+    PostHeader *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostHeader"];
+    [Utilities roundImage:header.profilePicture];
+    Post *post = self.posts[section];
+    if (post.author.profilePicture) {
+        [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url] placeholderImage:header.profilePicture.image];
+    }
+    header.postUsername.text = post.author.username;
+    return header;
+}
+
 - (NSInteger)tableView:(nonnull UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
+    return 1;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return self.posts.count;
 }
 

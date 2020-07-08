@@ -51,4 +51,10 @@
     return [PFFileObject fileObjectWithName:@"image.png" data:imageData];
 }
 
++ (void)roundImage:(UIImageView *)imageView {
+    imageView.layer.cornerRadius = imageView.frame.size.width / 2;
+    imageView.layer.masksToBounds = YES;
+    imageView.layer.borderWidth = 1.0f;
+}
+
 @end

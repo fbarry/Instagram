@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		0BC611B4F824E415009EF523 /* Pods_Instagram_InstagramUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 43F4D2D7CC73524FBDF5EAE5 /* Pods_Instagram_InstagramUITests.framework */; };
+		8C9EBF7924B66F960031380E /* PostHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7824B66F960031380E /* PostHeader.m */; };
+		8C9EBF7B24B671EE0031380E /* PostHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7A24B671EE0031380E /* PostHeader.xib */; };
+		8C9EBF7E24B689970031380E /* CollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7D24B689970031380E /* CollectionHeader.m */; };
 		8CD4CF6924B3C0B500F57F47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */; };
 		8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6B24B3C0B500F57F47 /* SceneDelegate.m */; };
 		8CD4CF7224B3C0B500F57F47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD4CF7024B3C0B500F57F47 /* Main.storyboard */; };
@@ -54,6 +57,11 @@
 		44F0753DCBBA85A786D2DE17 /* Pods_InstagramTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_InstagramTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4DC26F44B181137300DFD63B /* Pods_Instagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Instagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4E317C60C3A1A4368F94286B /* Pods-Instagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Instagram.release.xcconfig"; path = "Target Support Files/Pods-Instagram/Pods-Instagram.release.xcconfig"; sourceTree = "<group>"; };
+		8C9EBF7724B66F960031380E /* PostHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PostHeader.h; sourceTree = "<group>"; };
+		8C9EBF7824B66F960031380E /* PostHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = PostHeader.m; sourceTree = "<group>"; };
+		8C9EBF7A24B671EE0031380E /* PostHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeader.xib; sourceTree = "<group>"; };
+		8C9EBF7C24B689970031380E /* CollectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionHeader.h; sourceTree = "<group>"; };
+		8C9EBF7D24B689970031380E /* CollectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeader.m; sourceTree = "<group>"; };
 		8CD4CF6424B3C0B500F57F47 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD4CF6724B3C0B500F57F47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -234,6 +242,11 @@
 				8CD4CFB824B3E72400F57F47 /* PostCell.m */,
 				8CD4CFC024B5379D00F57F47 /* PostCollectionViewCell.h */,
 				8CD4CFC124B5379D00F57F47 /* PostCollectionViewCell.m */,
+				8C9EBF7724B66F960031380E /* PostHeader.h */,
+				8C9EBF7824B66F960031380E /* PostHeader.m */,
+				8C9EBF7A24B671EE0031380E /* PostHeader.xib */,
+				8C9EBF7C24B689970031380E /* CollectionHeader.h */,
+				8C9EBF7D24B689970031380E /* CollectionHeader.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -361,6 +374,7 @@
 			files = (
 				8CD4CF7724B3C0B600F57F47 /* LaunchScreen.storyboard in Resources */,
 				8CD4CF7424B3C0B600F57F47 /* Assets.xcassets in Resources */,
+				8C9EBF7B24B671EE0031380E /* PostHeader.xib in Resources */,
 				8CD4CF7224B3C0B500F57F47 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -491,6 +505,7 @@
 			files = (
 				8CD4CF9F24B3C70F00F57F47 /* LoginViewController.m in Sources */,
 				8CD4CF6924B3C0B500F57F47 /* AppDelegate.m in Sources */,
+				8C9EBF7E24B689970031380E /* CollectionHeader.m in Sources */,
 				8CD4CFC524B61C1B00F57F47 /* EditProfileViewController.m in Sources */,
 				8CD4CFBC24B5043400F57F47 /* DetailsViewController.m in Sources */,
 				8CD4CFAB24B3CD9900F57F47 /* ProfileViewController.m in Sources */,
@@ -498,6 +513,7 @@
 				8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */,
 				8CD4CFB524B3D54000F57F47 /* Post.m in Sources */,
 				8CD4CFA224B3C9B800F57F47 /* Utilities.m in Sources */,
+				8C9EBF7924B66F960031380E /* PostHeader.m in Sources */,
 				8CD4CFBF24B51FA800F57F47 /* User.m in Sources */,
 				8CD4CFA524B3CA8E00F57F47 /* HomeViewController.m in Sources */,
 				8CD4CFC224B5379D00F57F47 /* PostCollectionViewCell.m in Sources */,

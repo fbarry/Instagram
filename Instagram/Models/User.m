@@ -12,8 +12,10 @@
 @implementation User
 
 @dynamic profilePicture;
+@dynamic name;
+@dynamic descriptionText;
 
-- (void) updateProfilePicture: ( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion {
+- (void)updateProfilePicture:( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion {
     
     self.profilePicture = [Utilities getPFFileFromImage:image];
     [self saveInBackgroundWithBlock:completion];
