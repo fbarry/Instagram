@@ -57,4 +57,15 @@
     imageView.layer.borderWidth = 1.0f;
 }
 
++ (void)presentConfirmationInViewController:(UIViewController *)viewController withTitle:(nonnull NSString *)title yesHandler:(void(^)(UIAlertAction * _Nonnull action))yesHandler {
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:title message:@"Are you sure you want to continue?" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:yesHandler];
+    UIAlertAction *no = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [alert dismissViewControllerAnimated:YES completion:nil];
+    }];
+    [alert addAction:yes];
+    [alert addAction:no];
+    [viewController presentViewController:alert animated:YES completion:nil];
+}
+
 @end

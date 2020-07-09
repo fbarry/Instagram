@@ -84,6 +84,7 @@
     cell.post = self.posts[indexPath.section];
     [cell.postImage setImageWithURL:[NSURL URLWithString:cell.post.image.url] placeholderImage:[UIImage imageNamed:@"placeholder_image.png"]];
     cell.postText.text = cell.post.caption;
+    cell.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", cell.post.likeCount];
     
     return cell;
 }

@@ -24,6 +24,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 + (void)roundImage:(UIImageView *)imageView;
 
++ (void)presentConfirmationInViewController:(UIViewController *)viewController withTitle:(nonnull NSString *)title yesHandler:(void(^)(UIAlertAction * _Nonnull action))yesHandler;
+
 @end
 
 NS_ASSUME_NONNULL_END

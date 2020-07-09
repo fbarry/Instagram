@@ -1,8 +1,8 @@
 //
-//  EditProfileViewController.h
+//  SignUpViewController.h
 //  Instagram
 //
-//  Created by Fiona Barry on 7/8/20.
+//  Created by Fiona Barry on 7/9/20.
 //  Copyright © 2020 fbarry. All rights reserved.
 //
 
@@ -10,7 +10,7 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-@interface EditProfileViewController : UIViewController
+@interface SignUpViewController : UIViewController
 
 @end
 

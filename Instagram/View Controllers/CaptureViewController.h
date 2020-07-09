@@ -11,11 +11,6 @@
 
 NS_ASSUME_NONNULL_BEGIN
 
-typedef enum {
-    CAMERA,
-    PHOTOS,
-} SelectionType;
-
 @interface CaptureViewController : UIViewController
 
 @end

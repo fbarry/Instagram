@@ -21,6 +21,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *postImage;
 @property (weak, nonatomic) IBOutlet UILabel *postText;
 @property (weak, nonatomic) IBOutlet UIImageView *profilePicture;
+@property (weak, nonatomic) IBOutlet UILabel *likesLabel;
 
 @end
 
@@ -41,6 +42,7 @@
     self.usernameLabel.text = self.post.author.username;
     [self.postImage setImageWithURL:[NSURL URLWithString:self.post.image.url]];
     self.postText.text = self.post.caption;
+    self.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", self.post.likeCount];
     
     if (![self.post.author.objectId isEqualToString:[PFUser currentUser].objectId]) {
         self.navigationItem.rightBarButtonItem = nil;
@@ -48,16 +50,11 @@
 }
 
 - (IBAction)didTapDelete:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"Delete Item" message:@"Are you sure you want to continue?" preferredStyle:UIAlertControllerStyleAlert];
-    UIAlertAction *yes = [UIAlertAction actionWithTitle:@"Yes" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+    [Utilities presentConfirmationInViewController:self
+                                         withTitle:@"Post will be deleted"
+                                        yesHandler:^(UIAlertAction * _Nonnull action) {
         [self deletePost];
     }];
-    UIAlertAction *no = [UIAlertAction actionWithTitle:@"No" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
-        [alert dismissViewControllerAnimated:YES completion:nil];
-    }];
-    [alert addAction:yes];
-    [alert addAction:no];
-    [self presentViewController:alert animated:YES completion:nil];
 }
 
 - (void) deletePost {

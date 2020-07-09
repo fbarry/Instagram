@@ -19,4 +19,7 @@
     [super setSelected:selected animated:animated];
 }
 
+- (IBAction)didTapLike:(id)sender {
+}
+
 @end

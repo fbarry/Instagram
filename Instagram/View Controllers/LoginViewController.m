@@ -10,11 +10,13 @@
 #import "Utilities.h"
 #import <Parse/Parse.h>
 #import "User.h"
+#import "GradientView.h"
 
 @interface LoginViewController ()
 
 @property (weak, nonatomic) IBOutlet UITextField *username;
 @property (weak, nonatomic) IBOutlet UITextField *password;
+@property (weak, nonatomic) IBOutlet GradientView *gradientView;
 
 @end
 
@@ -22,31 +24,10 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view.
 }
 
 - (IBAction)didTapSignup:(id)sender {
-    if ([self.username.text isEqual:@""] || [self.password.text isEqual:@""]) {
-        // Fields are empty
-        [Utilities presentOkAlertControllerInViewController:self
-                                                  withTitle:@"Invalid Input"
-                                                    message:@"Username/Password field is incomplete."];
-    } else {
-        User *user = [User new];
-        
-        user.username = self.username.text;
-        user.password = self.password.text;
-        
-        [user signUpInBackgroundWithBlock:^(BOOL succeeded, NSError * _Nullable error) {
-            if (error) {
-                [Utilities presentOkAlertControllerInViewController:self
-                                                          withTitle:@"Error Creating User"
-                                                            message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
-            } else {
-                [self performSegueWithIdentifier:@"LoginSegue" sender:self];
-            }
-        }];
-    }
+    [self performSegueWithIdentifier:@"SignUp" sender:self];
 }
 
 - (IBAction)didTapLogin:(id)sender {
@@ -67,7 +48,6 @@
 - (IBAction)didTapBackground:(id)sender {
     [self.view endEditing:YES];
 }
-
 
 /*
 #pragma mark - Navigation

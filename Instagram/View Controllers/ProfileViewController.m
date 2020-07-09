@@ -108,9 +108,7 @@
     [Utilities roundImage:collectionHeader.profilePicture];
         
     User *user = [User currentUser];
-    
-    NSLog(@"%@", user);
-    
+        
     collectionHeader.nameLabel.text = user.name;
     collectionHeader.usernameLabel.text = [NSString stringWithFormat:@"@%@", user.username];
     collectionHeader.descriptionLabel.text = user.descriptionText;

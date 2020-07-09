@@ -11,6 +11,10 @@
 		8C9EBF7924B66F960031380E /* PostHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7824B66F960031380E /* PostHeader.m */; };
 		8C9EBF7B24B671EE0031380E /* PostHeader.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7A24B671EE0031380E /* PostHeader.xib */; };
 		8C9EBF7E24B689970031380E /* CollectionHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF7D24B689970031380E /* CollectionHeader.m */; };
+		8C9EBF8124B792060031380E /* SignUpViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8024B792060031380E /* SignUpViewController.m */; };
+		8C9EBF8924B799920031380E /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8824B799920031380E /* GradientView.m */; };
+		8C9EBF8B24B799CF0031380E /* GradientView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8A24B799CF0031380E /* GradientView.xib */; };
+		8C9EBF8E24B7A1890031380E /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8D24B7A1890031380E /* CameraView.m */; };
 		8CD4CF6924B3C0B500F57F47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */; };
 		8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6B24B3C0B500F57F47 /* SceneDelegate.m */; };
 		8CD4CF7224B3C0B500F57F47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD4CF7024B3C0B500F57F47 /* Main.storyboard */; };
@@ -62,6 +66,13 @@
 		8C9EBF7A24B671EE0031380E /* PostHeader.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PostHeader.xib; sourceTree = "<group>"; };
 		8C9EBF7C24B689970031380E /* CollectionHeader.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CollectionHeader.h; sourceTree = "<group>"; };
 		8C9EBF7D24B689970031380E /* CollectionHeader.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CollectionHeader.m; sourceTree = "<group>"; };
+		8C9EBF7F24B792060031380E /* SignUpViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SignUpViewController.h; sourceTree = "<group>"; };
+		8C9EBF8024B792060031380E /* SignUpViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SignUpViewController.m; sourceTree = "<group>"; };
+		8C9EBF8724B799920031380E /* GradientView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GradientView.h; sourceTree = "<group>"; };
+		8C9EBF8824B799920031380E /* GradientView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GradientView.m; sourceTree = "<group>"; };
+		8C9EBF8A24B799CF0031380E /* GradientView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradientView.xib; sourceTree = "<group>"; };
+		8C9EBF8C24B7A1890031380E /* CameraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
+		8C9EBF8D24B7A1890031380E /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
 		8CD4CF6424B3C0B500F57F47 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD4CF6724B3C0B500F57F47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -210,6 +221,8 @@
 			children = (
 				8CD4CF9D24B3C70F00F57F47 /* LoginViewController.h */,
 				8CD4CF9E24B3C70F00F57F47 /* LoginViewController.m */,
+				8C9EBF7F24B792060031380E /* SignUpViewController.h */,
+				8C9EBF8024B792060031380E /* SignUpViewController.m */,
 				8CD4CFA324B3CA8E00F57F47 /* HomeViewController.h */,
 				8CD4CFA424B3CA8E00F57F47 /* HomeViewController.m */,
 				8CD4CFA624B3CD9200F57F47 /* CaptureViewController.h */,
@@ -247,6 +260,11 @@
 				8C9EBF7A24B671EE0031380E /* PostHeader.xib */,
 				8C9EBF7C24B689970031380E /* CollectionHeader.h */,
 				8C9EBF7D24B689970031380E /* CollectionHeader.m */,
+				8C9EBF8724B799920031380E /* GradientView.h */,
+				8C9EBF8824B799920031380E /* GradientView.m */,
+				8C9EBF8A24B799CF0031380E /* GradientView.xib */,
+				8C9EBF8C24B7A1890031380E /* CameraView.h */,
+				8C9EBF8D24B7A1890031380E /* CameraView.m */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -373,6 +391,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8CD4CF7724B3C0B600F57F47 /* LaunchScreen.storyboard in Resources */,
+				8C9EBF8B24B799CF0031380E /* GradientView.xib in Resources */,
 				8CD4CF7424B3C0B600F57F47 /* Assets.xcassets in Resources */,
 				8C9EBF7B24B671EE0031380E /* PostHeader.xib in Resources */,
 				8CD4CF7224B3C0B500F57F47 /* Main.storyboard in Resources */,
@@ -507,11 +526,14 @@
 				8CD4CF6924B3C0B500F57F47 /* AppDelegate.m in Sources */,
 				8C9EBF7E24B689970031380E /* CollectionHeader.m in Sources */,
 				8CD4CFC524B61C1B00F57F47 /* EditProfileViewController.m in Sources */,
+				8C9EBF8124B792060031380E /* SignUpViewController.m in Sources */,
 				8CD4CFBC24B5043400F57F47 /* DetailsViewController.m in Sources */,
+				8C9EBF8E24B7A1890031380E /* CameraView.m in Sources */,
 				8CD4CFAB24B3CD9900F57F47 /* ProfileViewController.m in Sources */,
 				8CD4CF7A24B3C0B600F57F47 /* main.m in Sources */,
 				8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */,
 				8CD4CFB524B3D54000F57F47 /* Post.m in Sources */,
+				8C9EBF8924B799920031380E /* GradientView.m in Sources */,
 				8CD4CFA224B3C9B800F57F47 /* Utilities.m in Sources */,
 				8C9EBF7924B66F960031380E /* PostHeader.m in Sources */,
 				8CD4CFBF24B51FA800F57F47 /* User.m in Sources */,
