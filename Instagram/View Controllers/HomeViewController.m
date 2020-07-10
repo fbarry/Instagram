@@ -17,16 +17,21 @@
 #import "CaptureViewController.h"
 #import "DetailsViewController.h"
 #import "PostHeader.h"
+#import "InfiniteScrollActivityIndicator.h"
 
-@interface HomeViewController () <UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
-@property (strong, nonatomic) NSArray *posts;
+@property (strong, nonatomic) NSMutableArray *posts;
 @property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (strong, nonatomic) User *currentUser;
 
 @end
 
 @implementation HomeViewController
+
+BOOL isMoreDataLoading = NO;
+InfiniteScrollActivityIndicator* loadingMoreView;
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -36,20 +41,70 @@
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
     self.activityIndicator.center = self.view.center;
     
+    self.currentUser = [User currentUser];
+    
     [self.tableView registerNib:[UINib nibWithNibName:@"PostHeader" bundle:[NSBundle mainBundle]] forHeaderFooterViewReuseIdentifier:@"PostHeader"];
     
     [self loadFeed];
     
     self.tableView.refreshControl = [[UIRefreshControl alloc] init];
     [self.tableView.refreshControl addTarget:self action:@selector(loadFeed) forControlEvents:UIControlEventValueChanged];
+    
+    CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityIndicator.defaultHeight);
+    loadingMoreView = [[InfiniteScrollActivityIndicator alloc] initWithFrame:frame];
+    loadingMoreView.hidden = true;
+    [self.tableView addSubview:loadingMoreView];
+    
+    UIEdgeInsets insets = self.tableView.contentInset;
+    insets.bottom += InfiniteScrollActivityIndicator.defaultHeight;
+    self.tableView.contentInset = insets;
 }
 
 - (void)viewDidAppear:(BOOL)animated {
     [self loadFeed];
 }
 
+- (void)scrollViewDidScroll:(UIScrollView *)scrollView {
+    if (!isMoreDataLoading) {
+        int scrollViewContentHeight = self.tableView.contentSize.height;
+        int scrollOffsetThreshold = scrollViewContentHeight - self.tableView.bounds.size.height;
+        
+        if(scrollView.contentOffset.y > scrollOffsetThreshold && self.tableView.isDragging) {
+            isMoreDataLoading = YES;
+            CGRect frame = CGRectMake(0, self.tableView.contentSize.height, self.tableView.bounds.size.width, InfiniteScrollActivityIndicator.defaultHeight);
+            loadingMoreView.frame = frame;
+            [loadingMoreView startAnimating];
+            [self loadMoreData];
+        }
+    }
+}
+
+-(void)loadMoreData{
+    PFQuery *query = [PFQuery queryWithClassName:@"Post"];
+    [query includeKeys:@[@"author",@"image"]];
+    [query addDescendingOrder:@"createdAt"];
+    query.skip = self.posts.count;
+    query.limit = 20;
+
+    [query findObjectsInBackgroundWithBlock:^(NSArray *posts, NSError *error) {
+        if (error) {
+            [Utilities presentOkAlertControllerInViewController:self
+                                                      withTitle:@"Error Loading Posts"
+                                                        message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
+        } else {
+            if (posts.count > 0) {
+                isMoreDataLoading = NO;
+                [self.posts addObjectsFromArray:posts];
+                [self.tableView reloadData];
+            }
+        }
+        [loadingMoreView stopAnimating];
+    }];
+}
+
 - (void)loadFeed {
     [self.activityIndicator startAnimating];
+    isMoreDataLoading = NO;
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
     [query includeKeys:@[@"author",@"image"]];
@@ -62,7 +117,7 @@
                                                       withTitle:@"Error Retreiving Feed"
                                                         message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
         } else {
-            self.posts = posts;
+            self.posts = (NSMutableArray *)posts;
             [self.tableView reloadData];
         }
         [self.tableView.refreshControl endRefreshing];
@@ -86,6 +141,11 @@
     cell.postText.text = cell.post.caption;
     cell.likesLabel.text = [NSString stringWithFormat:@"%@ Likes", cell.post.likeCount];
     
+//    if (postisliked) {
+//        [cell.likeButton setImage:[UIImage systemImageNamed:@"heart.fill"] forState:UIControlStateNormal];
+//        [cell.likeButton setTintColor:[UIColor systemRedColor]];
+//    }
+    
     return cell;
 }
 
@@ -94,7 +154,7 @@
     [Utilities roundImage:header.profilePicture];
     Post *post = self.posts[section];
     if (post.author.profilePicture) {
-        [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url] placeholderImage:header.profilePicture.image];
+        [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url] placeholderImage:[UIImage imageNamed:@"profile_tab.png"]];
     }
     header.postUsername.text = post.author.username;
     return header;

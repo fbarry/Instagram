@@ -15,6 +15,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (strong, nonatomic) PFFileObject *profilePicture;
 @property (strong, nonatomic) NSString *name;
 @property (strong, nonatomic) NSString *descriptionText;
+@property (strong, nonatomic) PFRelation *likes;
 
 - (void)updateProfilePicture:( UIImage * _Nullable )image withCompletion: (PFBooleanResultBlock  _Nullable)completion;
 

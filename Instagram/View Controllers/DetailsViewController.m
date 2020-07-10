@@ -37,7 +37,7 @@
     self.dateLabel.text = [formatter stringFromDate:self.post.createdAt];
     
     if (self.post.author.profilePicture) {
-        [self.profilePicture setImageWithURL:[NSURL URLWithString:self.post.author.profilePicture.url] placeholderImage:self.profilePicture.image];
+        [self.profilePicture setImageWithURL:[NSURL URLWithString:self.post.author.profilePicture.url] placeholderImage:[UIImage imageNamed:@"profile_tab.png"]];
     }
     self.usernameLabel.text = self.post.author.username;
     [self.postImage setImageWithURL:[NSURL URLWithString:self.post.image.url]];

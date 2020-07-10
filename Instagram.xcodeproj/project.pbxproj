@@ -15,6 +15,7 @@
 		8C9EBF8924B799920031380E /* GradientView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8824B799920031380E /* GradientView.m */; };
 		8C9EBF8B24B799CF0031380E /* GradientView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8A24B799CF0031380E /* GradientView.xib */; };
 		8C9EBF8E24B7A1890031380E /* CameraView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF8D24B7A1890031380E /* CameraView.m */; };
+		8C9EBF9424B90FC20031380E /* InfiniteScrollActivityIndicator.m in Sources */ = {isa = PBXBuildFile; fileRef = 8C9EBF9324B90FC20031380E /* InfiniteScrollActivityIndicator.m */; };
 		8CD4CF6924B3C0B500F57F47 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */; };
 		8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 8CD4CF6B24B3C0B500F57F47 /* SceneDelegate.m */; };
 		8CD4CF7224B3C0B500F57F47 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 8CD4CF7024B3C0B500F57F47 /* Main.storyboard */; };
@@ -73,6 +74,8 @@
 		8C9EBF8A24B799CF0031380E /* GradientView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = GradientView.xib; sourceTree = "<group>"; };
 		8C9EBF8C24B7A1890031380E /* CameraView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = CameraView.h; sourceTree = "<group>"; };
 		8C9EBF8D24B7A1890031380E /* CameraView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = CameraView.m; sourceTree = "<group>"; };
+		8C9EBF9224B90FC20031380E /* InfiniteScrollActivityIndicator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = InfiniteScrollActivityIndicator.h; path = ../../../Twitter/twitter/Views/InfiniteScrollActivityIndicator.h; sourceTree = "<group>"; };
+		8C9EBF9324B90FC20031380E /* InfiniteScrollActivityIndicator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = InfiniteScrollActivityIndicator.m; path = ../../../Twitter/twitter/Views/InfiniteScrollActivityIndicator.m; sourceTree = "<group>"; };
 		8CD4CF6424B3C0B500F57F47 /* Instagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Instagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		8CD4CF6724B3C0B500F57F47 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		8CD4CF6824B3C0B500F57F47 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -251,6 +254,8 @@
 		8CD4CFB624B3E71000F57F47 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				8C9EBF9224B90FC20031380E /* InfiniteScrollActivityIndicator.h */,
+				8C9EBF9324B90FC20031380E /* InfiniteScrollActivityIndicator.m */,
 				8CD4CFB724B3E72400F57F47 /* PostCell.h */,
 				8CD4CFB824B3E72400F57F47 /* PostCell.m */,
 				8CD4CFC024B5379D00F57F47 /* PostCollectionViewCell.h */,
@@ -531,6 +536,7 @@
 				8C9EBF8E24B7A1890031380E /* CameraView.m in Sources */,
 				8CD4CFAB24B3CD9900F57F47 /* ProfileViewController.m in Sources */,
 				8CD4CF7A24B3C0B600F57F47 /* main.m in Sources */,
+				8C9EBF9424B90FC20031380E /* InfiniteScrollActivityIndicator.m in Sources */,
 				8CD4CF6C24B3C0B500F57F47 /* SceneDelegate.m in Sources */,
 				8CD4CFB524B3D54000F57F47 /* Post.m in Sources */,
 				8C9EBF8924B799920031380E /* GradientView.m in Sources */,

@@ -127,7 +127,6 @@
                                                 <state key="normal" title="Sign Up"/>
                                                 <connections>
                                                     <action selector="didTapSignup:" destination="cUJ-Gn-AXt" eventType="touchUpInside" id="B0U-iB-tvP"/>
-                                                    <action selector="didTapSignup:" destination="BYZ-38-t0r" eventType="touchUpInside" id="yXh-YO-B9V"/>
                                                 </connections>
                                             </button>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="pencil.circle" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="7Qx-kI-hro">
@@ -151,7 +150,6 @@
                                                 </state>
                                                 <connections>
                                                     <action selector="didTapProfile:" destination="cUJ-Gn-AXt" eventType="touchUpInside" id="xpa-GP-moG"/>
-                                                    <action selector="didTapProfile:" destination="Gmq-M0-8od" eventType="touchUpInside" id="zhn-vA-jXe"/>
                                                 </connections>
                                             </button>
                                             <textView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" text="Write your description here..." textAlignment="natural" translatesAutoresizingMaskIntoConstraints="NO" id="Hwz-Mf-ds3">
@@ -573,6 +571,7 @@
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="R5E-xR-Jqh" firstAttribute="leading" secondItem="Lud-Ey-fom" secondAttribute="leading" constant="16" id="0Jr-Io-yYw"/>
+                                            <constraint firstAttribute="bottom" relation="greaterThanOrEqual" secondItem="R5E-xR-Jqh" secondAttribute="bottom" constant="8" id="1ic-UA-FcG"/>
                                             <constraint firstItem="gfC-mt-8rw" firstAttribute="top" secondItem="Lud-Ey-fom" secondAttribute="top" id="6oX-Io-B42"/>
                                             <constraint firstItem="R5E-xR-Jqh" firstAttribute="top" secondItem="gfC-mt-8rw" secondAttribute="bottom" constant="16" id="7JI-uZ-yRz"/>
                                             <constraint firstItem="gfC-mt-8rw" firstAttribute="width" secondItem="gfC-mt-8rw" secondAttribute="height" multiplier="1:1" id="Hzy-YK-A0p"/>

@@ -39,8 +39,7 @@ CGPoint lastOffset;
                                                       withTitle:@"Error Posting Content"
                                                         message:[NSString stringWithFormat:@"%@", error.localizedDescription]];
         } else {
-            [self didTapCancel:self];
-            self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
+            [self clear];
         }
         [MBProgressHUD hideHUDForView:self.view animated:YES];
     }];
@@ -79,9 +78,14 @@ CGPoint lastOffset;
     [Utilities presentConfirmationInViewController:self
                                          withTitle:@"Draft will be deleted"
                                          yesHandler:^(UIAlertAction * _Nonnull action) {
-        self.postText.text = @"Write your caption here";
-        [self.postImage setImage:[UIImage imageNamed:@"placeholder_image"] forState:UIControlStateNormal];
+        [self clear];
     }];
+}
+
+- (void)clear {
+    self.postText.text = @"Write your caption here";
+    [self.postImage setImage:[UIImage imageNamed:@"image_placeholder.png"] forState:UIControlStateNormal];
+    self.navigationController.tabBarController.selectedViewController = [self.navigationController.tabBarController.viewControllers objectAtIndex:0];
 }
 
 #pragma mark - Navigation
