@@ -154,8 +154,9 @@ InfiniteScrollActivityIndicator* loadingMoreView;
     PostHeader *header = [self.tableView dequeueReusableHeaderFooterViewWithIdentifier:@"PostHeader"];
     [Utilities roundImage:header.profilePicture];
     Post *post = self.posts[section];
+    [header.profilePicture setImage:[UIImage imageNamed:@"profile_tab.png"]];
     if (post.author.profilePicture) {
-        [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url] placeholderImage:[UIImage imageNamed:@"profile_tab.png"]];
+        [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url]];
     }
     header.postUsername.text = post.author.username;
     header.delegate = self;

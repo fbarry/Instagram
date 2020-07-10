@@ -42,6 +42,7 @@
     } else {
         User *user = [User new];
         
+        user.name = self.name.text;
         user.username = self.username.text;
         user.password = self.password.text;
         user.descriptionText = self.descriptionField.text;
