@@ -14,7 +14,6 @@
 #import "PostCollectionViewCell.h"
 #import "UIImageView+AFNetworking.h"
 #import "Post.h"
-#import "User.h"
 #import "DetailsViewController.h"
 #import "CollectionHeader.h"
 
@@ -32,8 +31,13 @@
     
     self.collectionView.delegate = self;
     self.collectionView.dataSource = self;
-        
-//    [self.collectionView registerClass:[CollectionHeader class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionHeader"];
+    
+    if (!self.user) {
+        self.user = [User currentUser];
+    } else {
+        self.navigationItem.rightBarButtonItem = nil;
+        self.navigationItem.leftBarButtonItem = nil;
+    }
     
     [self getProfileFeed];
 }
@@ -44,9 +48,7 @@
 
 - (void)getProfileFeed {
     UICollectionViewFlowLayout *layout = (UICollectionViewFlowLayout *) self.collectionView.collectionViewLayout;
-    
-//    layout.headerReferenceSize = CGSizeMake(self.view.frame.size.width, 500);
-    
+        
     layout.minimumInteritemSpacing = 2.5;
     layout.minimumLineSpacing = 2.5;
     
@@ -56,7 +58,7 @@
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
     
     PFQuery *query = [PFQuery queryWithClassName:@"Post"];
-    [query whereKey:@"author" equalTo:[PFUser currentUser]];
+    [query whereKey:@"author" equalTo:self.user];
     [query includeKeys:@[@"author",@"image"]];
     [query addDescendingOrder:@"createdAt"];
 
@@ -106,14 +108,12 @@
     CollectionHeader *collectionHeader = [self.collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:@"CollectionHeader" forIndexPath:indexPath];
     
     [Utilities roundImage:collectionHeader.profilePicture];
-        
-    User *user = [User currentUser];
-        
-    collectionHeader.nameLabel.text = user.name;
-    collectionHeader.usernameLabel.text = [NSString stringWithFormat:@"@%@", user.username];
-    collectionHeader.descriptionLabel.text = user.descriptionText;
-    if (user.profilePicture) {
-        [collectionHeader.profilePicture setImageWithURL:[NSURL URLWithString:user.profilePicture.url] placeholderImage:collectionHeader.profilePicture.image];
+                
+    collectionHeader.nameLabel.text = self.user.name;
+    collectionHeader.usernameLabel.text = [NSString stringWithFormat:@"@%@", self.user.username];
+    collectionHeader.descriptionLabel.text = self.user.descriptionText;
+    if (self.user.profilePicture) {
+        [collectionHeader.profilePicture setImageWithURL:[NSURL URLWithString:self.user.profilePicture.url] placeholderImage:collectionHeader.profilePicture.image];
     }
     
     return collectionHeader;

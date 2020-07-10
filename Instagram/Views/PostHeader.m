@@ -10,4 +10,15 @@
 
 @implementation PostHeader
 
+- (void)awakeFromNib {
+    [super awakeFromNib];
+    
+    UITapGestureRecognizer *profileTapGestureRecognizer = [[UITapGestureRecognizer alloc]initWithTarget:self action:@selector(profileTapped:)];
+    [self addGestureRecognizer:profileTapGestureRecognizer];
+}
+
+- (void)profileTapped:(UITapGestureRecognizer *)sender {
+    [self.delegate didTapProfile:self];
+}
+
 @end

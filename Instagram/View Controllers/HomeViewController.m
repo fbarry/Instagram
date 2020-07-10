@@ -18,8 +18,9 @@
 #import "DetailsViewController.h"
 #import "PostHeader.h"
 #import "InfiniteScrollActivityIndicator.h"
+#import "ProfileViewController.h"
 
-@interface HomeViewController () <UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
+@interface HomeViewController () <PostHeaderDelegate, UIScrollViewDelegate, UITableViewDelegate, UITableViewDataSource>
 
 @property (strong, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSMutableArray *posts;
@@ -157,6 +158,8 @@ InfiniteScrollActivityIndicator* loadingMoreView;
         [header.profilePicture setImageWithURL:[NSURL URLWithString:post.author.profilePicture.url] placeholderImage:[UIImage imageNamed:@"profile_tab.png"]];
     }
     header.postUsername.text = post.author.username;
+    header.delegate = self;
+    header.user = post.author;
     return header;
 }
 
@@ -174,6 +177,15 @@ InfiniteScrollActivityIndicator* loadingMoreView;
         PostCell *cell = sender;
         detailsViewController.post = cell.post;
     }
+    if ([segue.identifier isEqualToString:@"Profile"]) {
+        ProfileViewController *profileViewController = [segue destinationViewController];
+        PostHeader *header = sender;
+        profileViewController.user = header.user;
+    }
+}
+
+- (void)didTapProfile:(PostHeader *)header {
+    [self performSegueWithIdentifier:@"Profile" sender:header];
 }
 
 @end

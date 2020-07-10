@@ -321,13 +321,13 @@
                                                 <state key="normal" image="paperplane" catalog="system"/>
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="0 Likes" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OCj-ly-3Tx">
-                                                <rect key="frame" x="8" y="499" width="41.5" height="14"/>
-                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="12"/>
+                                                <rect key="frame" x="8" y="499" width="59" height="20"/>
+                                                <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="LDr-FF-b7D">
-                                                <rect key="frame" x="8" y="517" width="44.5" height="20"/>
+                                                <rect key="frame" x="8" y="523" width="44.5" height="20"/>
                                                 <fontDescription key="fontDescription" name="AmericanTypewriter" family="American Typewriter" pointSize="17"/>
                                                 <nil key="textColor"/>
                                                 <nil key="highlightedColor"/>
@@ -528,6 +528,7 @@
                     <connections>
                         <outlet property="activityIndicator" destination="Zoi-06-b2S" id="arX-qq-Xzr"/>
                         <outlet property="tableView" destination="F2Q-7w-c8c" id="OUl-bm-HZd"/>
+                        <segue destination="tts-dY-DA3" kind="show" identifier="Profile" id="0v3-Oa-1He"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="gEV-CF-Lq7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -985,6 +986,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
+        <segue reference="0v3-Oa-1He"/>
         <segue reference="uYQ-k9-sdr"/>
     </inferredMetricsTieBreakers>
     <resources>
